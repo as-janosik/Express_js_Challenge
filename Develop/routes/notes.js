@@ -1,13 +1,13 @@
 const nt = require('express').Router();
-const { readAndAppend, readFromFile } = require('../helpers/fsUtils');
+const { readAndAppend, readFromFile } = require('../helpers/fsUtils.js');
 
-// GET Route
-nt.get('/notes', (req, res) =>
+//Get /api/notes should read the db.json file
+nt.get('/api/notes', (req, res) =>
   readFromFile('../db/db.json').then((data) => res.json(JSON.parse(data)))
 );
 
-// POST Route
-nt.post('/notes', (req, res) => {
+// POST /api/notes should receive new note and save via request body to db.json
+nt.post('/api/notes', (req, res) => {
   // Destructuring assignment for the items in req.body
   const {title, text} = req.body;
 
