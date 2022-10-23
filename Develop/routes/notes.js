@@ -2,21 +2,21 @@ const nt = require('express').Router();
 const { readAndAppend, readFromFile } = require('../helpers/fsUtils.js');
 
 //Get /api/notes should read the db.json file
-nt.get('/api/notes', (req, res) =>
+nt.get('/notes', (req, res) =>
   readFromFile('../db/db.json').then((data) => res.json(JSON.parse(data)))
 );
 
 // POST /api/notes should receive new note and save via request body to db.json
-nt.post('/api/notes', (req, res) => {
+nt.post('/notes', (req, res) => {
   // Destructuring assignment for the items in req.body
   const {title, text} = req.body;
 
   // If all the required properties are present
   if (title && text) {
     // Variable for the object we will save
-    const /*newFeedback*/newNote = {
+    const newNote = {
       title,
-      text,
+      text
     };
 
     readAndAppend(newNote, '../db/db.json');
