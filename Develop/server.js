@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
+app.use('/api', api);//   /api removed to try getting to routes
 
 app.use(express.static('public'));
 
