@@ -1,4 +1,5 @@
 const nt = require('express').Router();
+const unid = require('uniqid');
 const { readAndAppend, readFromFile } = require('../helpers/fsUtils.js');
 
 //Get /api/notes should read the db.json file
@@ -14,11 +15,12 @@ nt.post('/', (req, res) => {
   console.info(`${req.method} request received for Post-it`);
   // Destructuring assignment for the items in req.body
   const {title, text} = req.body;
-
+  const id = unid();
   // If all the required properties are present
-  if (title && text) {
+  if (id && title && text) {
     // Variable for the object we will save
     const newNote = {
+      id,
       title,
       text
     };
